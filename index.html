@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>HomingDevice</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="HomingDevice.js"></script>
+    <script>
+    $(document).ready(function(){
+        device = new HomingDevice({
+            done: function(p){
+                log("FINAL LOCATION: ("+p.coords.latitude+","+p.coords.longitude+") with accuracy "+p.coords.accuracy+" m.");
+            },
+            error: function(e){
+                log("ERROR: #"+e.code);
+            },
+            update: function(p){
+                log("LOCATION: ("+p.coords.latitude+","+p.coords.longitude+") with accuracy "+p.coords.accuracy+" m.");
+            },
+            accuracy: 500,
+        });
+        $("#go").click(function(){
+            device.run();
+            log("START");
+        });
+        $("#stop").click(function(){
+            
+            device.cancel();
+            log("CANCELED");
+        });
+        $("#setacc").click(function(){
+            var acc = parseInt($("#acc").val(),10);
+            device.set('accuracy',acc);
+            log("SET ACCURACY = "+acc);
+        });
+    });
+    
+    function log(msg){
+        $('#log').append(msg+"<br>");
+    };
+    </script>
+</head>
+<body>
+    <div id="log" style="width:600px; height:300px; font-family:monospace; padding: 5px; border:1px solid black; overflow-y:auto;">
+    </div>
+    <p>
+    <button id="go">Get Location</button><button id="stop">Cancel</button></p>
+    <p><input id="acc" value="500"><button id="setacc">Set Accuracy</button></p>
+    <p>
+    <small><em><a href="http://github.com/yuzawa-san">github.com/yuzawa-san</em></a></small>
+    </p>
+</body>
+</html>
