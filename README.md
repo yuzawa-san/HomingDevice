@@ -13,10 +13,9 @@ A tiny JavaScript class which demands a certain accuracy. This is espcially usef
 |:---------------------------|:---------------------|:------------------|:---------------------------------------------------------------------|
 | `accuracy`                   | int (meters)             | `500`              | The number of meters to use a threshold for accuracy |
 | `timeout`                    | int (ms)    | `10000`             | The number of milliseconds to wait before giving up an using an inaccurate position or to give up after not being able to obtain a position. |
-| `done`                 | function(position)             | `print to console`              | A success callback, receives Geoposition object. |
-| `update`                 | function(position)             | `nothing`              | An incremental callback, receives Geoposition object. |
-| `error`                 | function(error)             | `print to console`              | A failure callback, receives error object. |
-).
+| `done`                 | function(position)             | prints to console              | A success callback, receives Geoposition object. |
+| `update`                 | function(position)             | do nothing             | An incremental callback, receives Geoposition object. |
+| `error`                 | function(error)             | prints to console              | A failure callback, receives error object. |
 
 ## Usage
 
